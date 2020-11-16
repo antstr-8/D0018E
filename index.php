@@ -1,54 +1,29 @@
+<?php
+
+  session_start();
+
+  require_once "php/config.php";
+
+ ?>
+
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
 <body>
-<h1>BIG HTML</h1>
-<?php
-echo "Customers";
-echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>Id</th><th>Name</th></tr>";
-
-class TableRows extends RecursiveIteratorIterator {
-  function construct($it) {
-    parent::construct($it, self::LEAVES_ONLY);
-  }
-
-  function current() {
-    return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
-  }
-
-  function beginChildren() {
-    echo "<tr>";
-  }
-
-  function endChildren() {
-    echo "</tr>" . "\n";
-  }
-} 
-$servername = "127.0.0.1";
-$username = "";
-$password = "";
-$dbname = "";
-
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $stmt = $conn->prepare("SELECT id,CustomerName FROM Customer");
-  $stmt->execute();
-
-  $results = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-    echo $v;
-  }
-echo "</table>";
-} catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
-}
-
-?>
-
-<p>TROLL</p>
-<?php
-echo "troll2";
-?>
+  <div class="content">
+      <h1>BIG HTML</h1>
+  <p>
+    <?php
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+      echo $_SESSION["username"];
+    }
+     ?>
+     <br>
+     <a href="php/login.php">Login</a>
+     <a href="php/logout.php">Sign out</a>
+  </p>
+</div>
 </body>
 </html>
