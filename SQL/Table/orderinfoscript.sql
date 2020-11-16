@@ -1,0 +1,7 @@
+CREATE TABLE ORDERINFO(
+  id int NOT NULL,
+  prodid int NOT NULL,
+  quantity int,
+  FOREIGN KEY(id) REFERENCES ORDERS(id),
+  FOREIGN KEY(prodid) REFERENCES PRODINFO(id)
+);
