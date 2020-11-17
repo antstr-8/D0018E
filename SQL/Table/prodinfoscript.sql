@@ -1,6 +1,6 @@
 CREATE TABLE PRODINFO(
-  id int NOT NULL,
-  prodid int NOT NULL AUTO_INCREMENT,
+  id int NOT NULL AUTO_INCREMENT,
+  prodid int NOT NULL,
   color varchar(20),
   stock int,
   url varchar(255),

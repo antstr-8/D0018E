@@ -4,14 +4,31 @@
 }
 .products{
   border-style: solid double;
-  //Sätter en min height för att kunna se diven
-  //min-height: 200px;
-  height: 80%;
   width: 80%;
-  margin: auto;
+  /*margin-bottom: 20px;*/
 }
 .product_row{
-  margin-bottom: 20%;
+  border-style: solid;
+  margin-bottom: 5px;
   background-color: green;
-  height: auto;
+  /*Detta sätter höjden för produktraderna*/
+  height: 150px;
+}
+.pictures{
+  float:left;
+  width: 25%;
+  height: 100%;
+  background-color: red;
+}
+.description{
+  float:left;
+  height: 100%;
+  background-color: white;
+  width:45%;
+}
+.price{
+  width:30%;
+  float:right;
+  height: 100%;
+  background-color: white;
 }
