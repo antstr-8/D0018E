@@ -13,17 +13,18 @@
      <title>Product catalog!</title>
    </head>
    <body>
-     <div id="products">
-       <div class="product row">
+     <div class="products">
          <?php
            $stmt = $pdo->prepare("SELECT name FROM prodcat");
            $stmt->execute();
            $result = $stmt->fetchAll();
            foreach($result as $row){
+             echo "<div class='product_row'>";
              echo $row['name'];
+             echo "<br>";
+             echo "</div>";
            }
          ?>
-       </div>
-     </div>
+      </div>
    </body>
  </html>

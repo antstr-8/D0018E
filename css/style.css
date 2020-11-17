@@ -5,6 +5,13 @@
 .products{
   border-style: solid double;
   //Sätter en min height för att kunna se diven
-  min-height: 200px;
-  background-color: blue;
+  //min-height: 200px;
+  height: 80%;
+  width: 80%;
+  margin: auto;
+}
+.product_row{
+  margin-bottom: 20%;
+  background-color: green;
+  height: auto;
 }
