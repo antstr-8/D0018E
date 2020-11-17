@@ -2,3 +2,9 @@
   width: 70%;
   margin: auto;
 }
+.products{
+  border-style: solid double;
+  //Sätter en min height för att kunna se diven
+  min-height: 200px;
+  background-color: blue;
+}

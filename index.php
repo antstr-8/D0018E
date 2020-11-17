@@ -23,6 +23,8 @@
      <br>
      <a href="php/login.php">Login</a>
      <a href="php/logout.php">Sign out</a>
+     <br>
+     <a href="php/prodcat.php">Product catalog</a>
   </p>
 </div>
 </body>

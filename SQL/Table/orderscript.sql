@@ -1,8 +1,8 @@
-CREATE TABLE ORDER(
+CREATE TABLE ORDERS(
   id int NOT NULL AUTO_INCREMENT,
   custid int NOT NULL,
   orderdate date,
-  cost int
+  cost int,
   PRIMARY KEY(id),
   FOREIGN KEY(custid) REFERENCES CUSTOMER(id)
 );
