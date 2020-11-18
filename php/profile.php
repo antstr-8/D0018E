@@ -38,9 +38,11 @@
     $phone_err = $sex_err = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-      /*if(gettype($_POST["phone"]) == integer){
-        $phone_err = "Wrong input, input number.";
+      if(isset($_POST["phone"]) == NULL){
+        $phone = "0";
+        $phone_err = "Satt";
       }
+      /*
       if($_SERVER["sex"] < 6){
         $sex_err = "To long string.";
       }*/
@@ -48,15 +50,19 @@
 
         $id = $_SESSION["id"];
           $sql = "UPDATE customer SET fname = :fname, sname = :sname,
-           phone = :phone WHERE id = $id";
+            email = :email WHERE id = $id";
+
 
           if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":fname", $param_fname, PDO::PARAM_STR);
             $stmt->bindParam(":sname", $param_sname, PDO::PARAM_STR);
-            $stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);
+            /*$stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);*/
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
 
             $param_fname = trim($_POST["fname"]);
             $param_sname = trim($_POST["sname"]);
+            /*$param_phone = trim($_POST["phone"]);*/
+            $param_email = trim($_POST["email"]);
 
             if($stmt->execute()){
               header("Refresh:0");
@@ -70,7 +76,7 @@
     }
   }
   else{
-    header("location: index.php");
+    header("location: /../index.php");
 }
  ?>
 
@@ -95,8 +101,13 @@
          </div>
          <div class="form-group">
              <label>Phone number</label>
-             <input type="number" name="phone" class="form-control" value="<?php echo $phone; ?>">
-             <span class="help-block"><?php echo $phone; ?></span>
+             <input type="number" name="phone" class="form-control" value="<?php echo $phone_err; ?>">
+             <span class="help-block"><?php echo $phone_err; ?></span>
+         </div>
+         <div class="form-group">
+             <label>E-mail</label>
+             <input type="email" name="email" class="form-control" value="<?php echo $email; ?>">
+             <span class="help-block"></span>
          </div>
          <div class="form-group">
              <input type="submit" class="btn btn-primary" value="Submit">
