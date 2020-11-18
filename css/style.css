@@ -32,6 +32,7 @@
   height: 100%;
   background-color: white;
 }
+/* CSS for header START*/
 .header{
   width: 70%;
   background-color: gray;
@@ -44,8 +45,10 @@
   padding: 20px 0;
   padding-right: 10px;
   padding-left: 10px;
+  color: white;
 }
 
 .login p{
   color: white;
 }
+/*CSS for header END */

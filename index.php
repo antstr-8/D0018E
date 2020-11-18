@@ -5,7 +5,6 @@
   require_once "php/config.php";
 
  ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,6 @@
   <!--HEADER STARTS HERE-->
   <div class="header">
     <div class="logBox">
-
     <?php
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
       echo "Welcome " . $_SESSION["username"];
@@ -33,8 +31,7 @@
               }
             </style>';
     }
-
-     ?>
+    ?>
      <a class="login" href="php/login.php">Login</a>
      <a class="login" href="php/register.php">Sign up</a>
      <a class="logout" href="php/logout.php">Sign out</a>
@@ -45,12 +42,9 @@
   <div class="content">
       <h1>BIG HTML</h1>
   <p>
-
-     <br>
-
-     <br>
      <a href="php/prodcat.php">Product catalog</a>
   </p>
+  <a href="php/profile.php">Profile</a>
 </div>
 </body>
 </html>
