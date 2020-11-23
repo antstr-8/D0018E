@@ -9,7 +9,7 @@
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
-     <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="/../css/style.css">
      <title>Product catalog!</title>
    </head>
    <body>
@@ -25,16 +25,21 @@
              foreach($res as $row2){
                echo "<div class='product_row'>";
                echo "<div class='pictures'>";
-               echo "<img src=" . $row2['url'] . ">";
-               echo "testbild";
+               echo "<img src=" . $row2['url'] . " style='max-width: 100%;max-height: 100%;'>";
+               /*echo "testbild";*/
                echo "</div>";
                echo "<div class='description'>";
                echo $row['description'];
                echo "</div>";
                echo "<div class='price'>";
-               echo $row['name'];
-               echo "test pris";
-               //echo "<br>";
+                echo "<div class='artname'>";
+                  echo $row['name'];
+                echo "</div>";
+               echo $row2['price'];
+               echo "<br>";
+               echo $row2['stock'];
+               echo "<br>";
+               echo $row2['color'];
                echo "</div>";
                echo "</div>";
             }
