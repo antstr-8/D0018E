@@ -19,6 +19,3 @@ VALUES((SELECT id FROM prodcat WHERE name="art1"),"red",100,"/../pictures/art1.p
 
 INSERT INTO PRODINFO(prodid,color,stock,url,price)
 VALUES((SELECT id FROM prodcat WHERE name="art2"),"blue",120,"/../pictures/art2.png",300);
-
-INSERT INTO cart(custid,prodid,quantity)
-VALUES((SELECT id FROM customer WHERE fname="Anton"),(SELECT id FROM prodinfo WHERE id = 1),"23");
