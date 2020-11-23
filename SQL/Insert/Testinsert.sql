@@ -13,9 +13,12 @@ INSERT INTO PRODCAT(name,description)
 VALUES("art1","The first piece of art created on this earth worth its weight in gold");
 
 //Test insertion of a productinformation based on the art1 on the above item
-INSERT INTO PRODINFO(id,color,stock,url,price)
+INSERT INTO PRODINFO(prodid,color,stock,url,price)
 VALUES((SELECT id FROM prodcat WHERE name="art1"),"red",100,"/../pictures/art1.png",250);
 
 
-INSERT INTO PRODINFO(id,color,stock,url,price)
+INSERT INTO PRODINFO(prodid,color,stock,url,price)
 VALUES((SELECT id FROM prodcat WHERE name="art2"),"blue",120,"/../pictures/art2.png",300);
+
+INSERT INTO cart(custid,prodid,quantity)
+VALUES((SELECT id FROM customer WHERE fname="Anton"),(SELECT id FROM prodinfo WHERE id = 1),"23");
