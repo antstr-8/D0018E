@@ -94,8 +94,6 @@
 
 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-
-
                 <div class='product_row'>
                   <div class='pictures'>
                     <img src="<?php echo $row2['url'];?>" style='max-width: 100%; max-height: 100%;'>
