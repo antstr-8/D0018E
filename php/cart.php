@@ -60,7 +60,7 @@
       <div class="products">
           <?php
           if(isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
-            $sql = ("SELECT custid,prodid,quantity FROM cart WHERE custid= :custid");
+            $sql = "SELECT custid,prodid,quantity FROM cart WHERE custid= :custid";
               $stmt = $pdo->prepare($sql);
               $stmt ->bindParam(":custid",$_SESSION['id'],PDO::PARAM_STR);
               $stmt->execute();
@@ -113,6 +113,9 @@
         }
           ?>
           <a href="/../index.php">Home</a>
+          <form action="checkout.php" method="post">
+              <button type="submit" name="button">Checkout</button>
+          </form>
     </div>
   </body>
 </html>
