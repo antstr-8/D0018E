@@ -116,6 +116,7 @@
                   <input type="number" name="quantity" value="1">
                   <input type="hidden" name="prodid" value="<?php echo $row['id'];?>">
                   <input type="submit" value="Add to cart">
+                  <input type="submit" value="Product">
                 </form>
               <?php
             }
