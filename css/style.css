@@ -58,4 +58,7 @@
 .login p{
   color: white;
 }
+.admin{
+  display: none;
+}
 /*CSS for header END */
