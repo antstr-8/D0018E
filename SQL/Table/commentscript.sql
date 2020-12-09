@@ -1,4 +1,4 @@
-CREATE TABLE COMMENT(
+CREATE TABLE COMMENTRATING(
   custid int NOT NULL,
   prodid int NOT NULL,
   comment varchar(255),

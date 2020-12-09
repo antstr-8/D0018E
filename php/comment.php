@@ -9,7 +9,7 @@
 
   if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true){
     if(strlen($_POST['comment']) < 250){
-      $sqlComment = "INSERT INTO comment (custid, prodid, comment, rating)
+      $sqlComment = "INSERT INTO commentrating (custid, prodid, comment, rating)
        VALUES (:custid, :prodid, :comment, :rating);";
        $stmtComment = $pdo->prepare($sqlComment);
 

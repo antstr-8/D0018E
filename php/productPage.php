@@ -21,7 +21,7 @@
     $stmt2->execute();
     $res2 = $stmt2->fetch();
 
-    $sqlComment = "SELECT * FROM COMMENT WHERE prodid=:prodid";
+    $sqlComment = "SELECT * FROM COMMENTRATING WHERE prodid=:prodid";
 
     $stmtComment = $pdo->prepare($sqlComment);
     $stmtComment->bindParam(':prodid', $prodid, PDO::PARAM_STR);
