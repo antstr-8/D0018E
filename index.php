@@ -62,7 +62,15 @@
                 display:none;
               }
             </style>';
+      if($_SESSION["admin"] | 1){
+        echo '<style type="text/css">
+                .admin {
+                  display: inline;
+                }
+              </style>';
+      }
     }
+
     else{
       echo '<style type="text/css">
               .logout {
@@ -75,6 +83,7 @@
      <a class="login" href="php/register.php">Sign up</a>
      <a class="logout" href="php/cart.php">Cart</a>
      <a class="logout" href="php/logout.php">Sign out</a>
+     <a class="admin" href="php/admin.php">Admin</a>
    </div>
   </div>
 
@@ -104,7 +113,9 @@
                    </div>
                    <div class='price'>
                    <div class='artname'>
-                    <?php echo $row['name']; ?>
+                     <a href="php/productPage.php?id=<?php echo $row['id'];?>">
+                       <?php echo $row['name']; ?>
+                    </a>
                    </div>
                 <?php echo $row2['price']; ?>
                 <br>

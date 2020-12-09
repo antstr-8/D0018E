@@ -31,7 +31,7 @@
 
 
   if(empty($username_err) && empty($password_err)){
-    $sql = "SELECT id, uname, psword FROM customer WHERE uname = :uname";
+    $sql = "SELECT id, uname, psword, admin FROM customer WHERE uname = :uname";
 
     if( $stmt = $pdo->prepare($sql)){
       $stmt->bindParam(":uname", $param_username, PDO::PARAM_STR);
@@ -44,12 +44,14 @@
             $id = $row["id"];
             $username = $row["uname"];
             $hashed_password = $row["psword"];
+            $admin = $row['admin'];
             if($password === $hashed_password){
               session_start();
 
               $_SESSION["loggedin"] = true;
               $_SESSION["id"] = $id;
               $_SESSION["username"] = $username;
+              $_SESSION["admin"] = $admin;
               header("location: /../index.php");
             }
             else{
