@@ -62,7 +62,7 @@
                 display:none;
               }
             </style>';
-      if($_SESSION["admin"] | 1){
+      if($_SESSION["admin"] == 1){
         echo '<style type="text/css">
                 .admin {
                   display: inline;
