@@ -38,7 +38,7 @@
   <div class="logBox">
   <?php
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    echo "Welcome <a href='php/profile.php'>" . $_SESSION["username"] . "</a>";
+    echo "Welcome <a href='profile.php'>" . $_SESSION["username"] . "</a>";
     echo '<style type="text/css">
             .login {
               display:none;

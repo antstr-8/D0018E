@@ -36,44 +36,20 @@
     unset($stmt);
   }
     $phone_err = $sex_err = "";
+    //Print out order history
+    $sqlOrders = "SELECT * FROM ORDERS where custid=:id";
+    $stmtOrders = $pdo->prepare($sqlOrders);
+    $stmtOrders->bindParam(':id', $param_id, PDO::PARAM_STR);
+    $stmtOrders->execute();
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-      if(isset($_POST["phone"]) == NULL){
-        $phone = "0";
-        $phone_err = "Satt";
-      }
-      /*
-      if($_SERVER["sex"] < 6){
-        $sex_err = "To long string.";
-      }*/
+    $sqlOrderInfo = "SELECT * FROM orderinfo where id = :orderid";
+    $stmtOrderInfo = $pdo->prepare($sqlOrderInfo);
 
+    $sqlProdinfo = "SELECT * FROM prodinfo where id = :prodid";
+    $stmtProdinfo = $pdo->prepare($sqlProdinfo);
 
-        $id = $_SESSION["id"];
-          $sql = "UPDATE customer SET fname = :fname, sname = :sname,
-            email = :email WHERE id = $id";
-
-
-          if($stmt = $pdo->prepare($sql)){
-            $stmt->bindParam(":fname", $param_fname, PDO::PARAM_STR);
-            $stmt->bindParam(":sname", $param_sname, PDO::PARAM_STR);
-            /*$stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);*/
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
-
-            $param_fname = trim($_POST["fname"]);
-            $param_sname = trim($_POST["sname"]);
-            /*$param_phone = trim($_POST["phone"]);*/
-            $param_email = trim($_POST["email"]);
-
-            if($stmt->execute()){
-              header("Refresh:0");
-            }
-            else{
-              echo "Something went wrong.";
-            }
-
-          }
-
-    }
+    $sqlProdcat = "SELECT * FROM prodcat where id = :prodcatID";
+    $stmtProdcat = $pdo->prepare($sqlProdcat);
   }
   else{
     header("location: /../index.php");
@@ -84,30 +60,29 @@
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
-     <title></title>
+     <title><?php echo $_SESSION['username'];?></title>
+     <link rel="stylesheet" href="/css/style.css">
    </head>
    <body>
+     <div class="content">
      <h2>Update profile information</h2>
-     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-         <div class="form-group">
+     <form action="./updateProfile.php" method="post">
+         <div>
              <label>First name</label>
-             <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
-             <span class="help-block"></span>
+             <input type="text" name="fname"  value="<?php echo $fname; ?>">
          </div>
-         <div class="form-group">
+         <div >
              <label>Last name</label>
-             <input type="text" name="sname" class="form-control" value="<?php echo $sname; ?>">
-             <span class="help-block"></span>
+             <input type="text" name="sname" value="<?php echo $sname; ?>">
          </div>
-         <div class="form-group">
+         <div>
              <label>Phone number</label>
-             <input type="number" name="phone" class="form-control" value="<?php echo $phone_err; ?>">
-             <span class="help-block"><?php echo $phone_err; ?></span>
+             <input type="number" name="phone" value="<?php echo $phone_err; ?>">
+
          </div>
          <div class="form-group">
              <label>E-mail</label>
-             <input type="email" name="email" class="form-control" value="<?php echo $email; ?>">
-             <span class="help-block"></span>
+             <input type="email" name="email"  value="<?php echo $email; ?>">
          </div>
          <div class="form-group">
              <input type="submit" class="btn btn-primary" value="Submit">
@@ -115,5 +90,61 @@
          </div>
      </form>
      <a href="/../index.php">Home</a>
+         <div class="orderHistory">
+           <h2>Order History</h2>
+            <?php
+              if($stmtOrders->rowCount()>0){
+                $resOrders = $stmtOrders->fetchAll();
+                foreach ($resOrders as $row) {
+                  $stmtOrderInfo->bindParam(':orderid', $row['id'], PDO::PARAM_STR);
+                  $stmtOrderInfo->execute();
+                  $resOrderInfo = $stmtOrderInfo->fetchAll();
+                  ?>
+                    <div class="order">
+                      <label>Order id: <?php echo $row['id'];?></label>
+                      <label>Total cost: <?php echo $row['cost'];?></label>
+                      <p>Items ordered</p>
+
+                  <?php
+                  foreach ($resOrderInfo as $row2){
+                    $stmtProdinfo->bindParam(':prodid', $row2['prodid'], PDO::PARAM_STR);
+                    $stmtProdinfo->execute();
+
+                    $resProdinfo = $stmtProdinfo->fetch();
+
+                    $stmtProdcat->bindParam(':prodcatID', $resProdinfo['prodid'],
+                     PDO::PARAM_STR);
+                    $stmtProdcat->execute();
+                    $resProdcat = $stmtProdcat->fetch();
+
+                    ?>
+                    <div class="orderItem">
+                      <p><b>Item name: <?php echo $resProdcat['name'];?></b>
+                          Color: <?php echo $resProdinfo['color'];?>
+                          <a href="productPage?id=<?php echo $row2['prodid'];?>">
+                            Link</a></p>
+                      <p>Item cost: <?php echo $resProdinfo['price'];?>
+                        Number orded: <?php echo $row2['quantity']; ?>
+                        Total per product:
+                        <?php echo $resProdinfo['price']*$row2['quantity'];?>
+                      </p>
+                    </div>
+
+                    <?php
+                  }
+                  ?>
+
+                  </div>
+                  <?php
+                }
+              }else{
+                ?>
+                <p>Nothing ordered yet...</p>
+                <?php
+              }
+
+             ?>
+         </div>
+      </div>
    </body>
  </html>
