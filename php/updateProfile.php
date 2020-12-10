@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $id = $_SESSION["id"];
       $sql = "UPDATE customer SET fname = :fname, sname = :sname,
-        email = :email WHERE id = $id";
+        email = :email, phone=:phone WHERE id = $id";
 
 
       if($stmt = $pdo->prepare($sql)){
@@ -22,11 +22,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt->bindParam(":sname", $param_sname, PDO::PARAM_STR);
         /*$stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);*/
         $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+        $stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);
 
         $param_fname = trim($_POST["fname"]);
         $param_sname = trim($_POST["sname"]);
         /*$param_phone = trim($_POST["phone"]);*/
         $param_email = trim($_POST["email"]);
+        $param_phone = trim($_POST["phone"]);
 
         if($stmt->execute()){
           header("location: ./profile.php");

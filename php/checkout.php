@@ -89,4 +89,5 @@ if($clear == TRUE){
     $sqlUpdate->execute();
   }
 }
+header("location: profile.php");
 ?>

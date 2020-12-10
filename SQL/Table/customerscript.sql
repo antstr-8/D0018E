@@ -4,7 +4,7 @@ CREATE TABLE CUSTOMER (
   psword varchar(255),
   fname varchar(15),
   sname varchar(15),
-  phone int,
+  phone varchar(15),
   email varchar(255),
   admin bit DEFAULT 0,
   sex varchar(5),

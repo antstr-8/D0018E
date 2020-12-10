@@ -64,6 +64,7 @@
      <link rel="stylesheet" href="/css/style.css">
    </head>
    <body>
+     <a href="/../index.php">Home</a>
      <div class="content">
      <h2>Update profile information</h2>
      <form action="./updateProfile.php" method="post">
@@ -77,7 +78,7 @@
          </div>
          <div>
              <label>Phone number</label>
-             <input type="number" name="phone" value="<?php echo $phone_err; ?>">
+             <input type="text" name="phone" value="<?php echo $phone; ?>">
 
          </div>
          <div class="form-group">
@@ -89,7 +90,6 @@
              <input type="reset" class="btn btn-default" value="Reset">
          </div>
      </form>
-     <a href="/../index.php">Home</a>
          <div class="orderHistory">
            <h2>Order History</h2>
             <?php
@@ -129,11 +129,9 @@
                         <?php echo $resProdinfo['price']*$row2['quantity'];?>
                       </p>
                     </div>
-
                     <?php
                   }
                   ?>
-
                   </div>
                   <?php
                 }
@@ -142,7 +140,6 @@
                 <p>Nothing ordered yet...</p>
                 <?php
               }
-
              ?>
          </div>
       </div>
