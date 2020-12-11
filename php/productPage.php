@@ -99,7 +99,7 @@
        <p>Color: <?php echo $res1['color']?></p>
        <img src="<?php echo $res1['url']?>">
      </div>
-     <form class="adminInfo" action="updateproduct.php<?php echo $prodid?>" method="post">
+     <form class="adminInfo" action="updateproduct.php" method="post">
        <label>Productname:</label>
        <input type="text" name="productName" value="<?php echo $res2['name']?>">
        <br>
@@ -119,7 +119,7 @@
        <br>
        <label><img src="<?php echo $res1['url']?>"></label>
        <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
-       <input type="hidden" name="prodCatid" value="<?php echo $res2['id'] ?>">
+       <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
      </form>
      <form class="" action="comment.php" method="post" id ="commentForm">
 

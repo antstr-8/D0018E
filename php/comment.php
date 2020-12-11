@@ -27,6 +27,4 @@
   }
     header("location: productPage.php?id=" . $_POST['prodid']);
 
-
-
 ?>
