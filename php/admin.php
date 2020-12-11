@@ -1,29 +1,58 @@
 <?php
-
+  require_once "config.php";
   session_start();
   $pictureCheck = false;
   $nameCheck = false;
+  $prodid = 0;
 
   if(isset($_POST['newProduct'])){
     //$filepath = "./../Pictures/" . $_FILES["file"]["name"];
-    $filepath = "E:\wamp64\www\Pictures/" . $_FILES["file"]["name"];
+    $sqlQuery1 = "INSERT INTO PRODCAT (name,description)
+    VALUES (:name,:description)";
+    $sqlQuery2 = "INSERT INTO PRODINFO (prodid,color,stock,url,price)
+    VALUES(:prodid,:color,:stock,:url,:price)";
+
+    $stmtIns1 = $pdo->prepare($sqlQuery1);
+    $stmtIns2 = $pdo->prepare($sqlQuery2);
+
+    $stmtIns1->bindParam(":name", $_POST['productName'], PDO::PARAM_STR);
+    $stmtIns1->bindParam(":description", $_POST['Description'], PDO::PARAM_STR);
+
+    $stmtIns2->bindParam(":color", $_POST['prodcolor'], PDO::PARAM_STR);
+    $stmtIns2->bindParam(":stock", $_POST['stock'], PDO::PARAM_STR);
+    $stmtIns2->bindParam(":price", $_POST['prodprice'], PDO::PARAM_STR);
+
+
+    $filepath = "./../Pictures/" . $_FILES["file"]["name"];
     $extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
-    echo $extension;
-    echo "<br/>";
+    $productName = $_POST['productName'];
+
+
     if($extension == 'jpeg' || $extension == 'png' || $extension == 'jpg'){
       if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath)) {
         $pictureCheck = true;
-        //echo "<img src=".$filepath." height=200 width=300 />";
-        echo "working";
       } else {
-        echo $filepath;
-        echo "<br/>";
-        echo "not working";
         $pictureCheck = false;
       }
     } else{
-      echo "You uploaded the wrong kind of file you pepega baboon.";
+      echo "You uploaded the wrong kind of file. Only takes png and jpg";
     }
+
+    if($pictureCheck == true){
+      $stmtIns1->execute();
+      $GetId = $pdo->prepare("SELECT @@identity AS 'id'");
+      $GetId->execute();
+      $prodid = $GetId->fetch();
+
+      $stmtIns2->bindParam(":url", $filepath, PDO::PARAM_STR);
+      $stmtIns2->bindParam(":prodid", $prodid['id'], PDO::PARAM_STR);
+      $stmtIns2->execute();
+
+
+    }else{
+      echo "Error with the upload! Check the fields entered";
+    }
+    header("location: ./../index.php");
 }
  ?>
 
@@ -75,10 +104,18 @@
   <h3>Select image :</h3>
   <input type="file" name="file"><br/>
   <label>Product name:</label>
-  <input type="text" name="productName"><br/>
+  <input type="text" name="productName">
+  <label>Stock:</label>
+  <input type="number" name="stock">
+  <br>
+  <label>Price:</label>
+  <input type="number" name="prodprice">
+  <label>Color:</label>
+  <input type="text" name="prodcolor">
 </form>
 <p>Description:</p>
-<textarea name="Description" form="newprod" maxlength="250">Description of the item goes here</textarea><br/>
+<textarea name="Description" form="newprod" maxlength="250">Description of the item goes here</textarea>
+<br>
 <input type="submit" value="Submit" name="newProduct" form="newprod">
 <!--<div class="productrow">
   <div class="pictures">
