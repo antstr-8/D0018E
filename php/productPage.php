@@ -64,6 +64,9 @@
                    .admin {
                      display: inline;
                    }
+                   .normieInfo{
+                     display:none;
+                   }
                  </style>';
          }
        }
@@ -85,12 +88,26 @@
      </div>
 
      <!--HEADER ENDS HERE-->
-     <p>Productname: <?php echo $res2['name']?></p>
-     <p>Description: <br> <?php echo $res2['description']?></p>
-     <p>Price: <?php echo $res1['price']?></p>
-     <p>In stock: <?php echo $res1['stock']?></p>
-     <p>Color: <?php echo $res1['color']?></p>
-     <img src="<?php echo $res1['url']?>">
+     <div class="normieInfo">
+       <p>Productname: <?php echo $res2['name']?></p>
+       <p>Description: <br> <?php echo $res2['description']?></p>
+       <p>Price: <?php echo $res1['price']?></p>
+       <p>In stock: <?php echo $res1['stock']?></p>
+       <p>Color: <?php echo $res1['color']?></p>
+       <img src="<?php echo $res1['url']?>">
+     </div>
+     <form class="" action="updateproduct.php<?php echo $prodid?>" method="post">
+       <label>Productname:</label>
+       <input type="text" name="productName" value="<?php echo $res2['name']?>">
+       <br>
+       <label>Description:</label>
+       <input type="text" name="productDescription" value="<?php echo $res2['description']?>">
+       <br>
+       <label>Price:</label>
+       <input type="number" name="productPrice" value="<?php echo $res1['price']?>">
+       <input type="submit">
+       <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
+     </form>
      <form class="" action="comment.php" method="post" id ="commentForm">
 
        Raiting: <input type="number" name="rating" value="5">
@@ -114,6 +131,10 @@
          <div class="commentDiscription">
            Comment: <br>
            <?php echo $row['comment'];?>
+         </div>
+         <div class="commentRating">
+           Rating: <br>
+           <?php echo $row['rating'];?>
          </div>
        </div>
 
