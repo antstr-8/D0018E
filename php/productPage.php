@@ -76,6 +76,9 @@
                  .logout {
                    display:none;
                  }
+                 .adminInfo{
+                   display:none;
+                 }
                </style>';
        }
        ?>
@@ -96,7 +99,7 @@
        <p>Color: <?php echo $res1['color']?></p>
        <img src="<?php echo $res1['url']?>">
      </div>
-     <form class="" action="updateproduct.php<?php echo $prodid?>" method="post">
+     <form class="adminInfo" action="updateproduct.php<?php echo $prodid?>" method="post">
        <label>Productname:</label>
        <input type="text" name="productName" value="<?php echo $res2['name']?>">
        <br>
@@ -105,12 +108,22 @@
        <br>
        <label>Price:</label>
        <input type="number" name="productPrice" value="<?php echo $res1['price']?>">
+       <br>
+       <label>Stock:</label>
+       <input type="number" name="productStock" value="<?php echo $res1['stock']?>">
+       <br>
+       <label>Color:</label>
+       <input type="text" name="productColor" value="<?php echo $res1['color']?>">
+       <br>
        <input type="submit">
+       <br>
+       <label><img src="<?php echo $res1['url']?>"></label>
        <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
+       <input type="hidden" name="prodCatid" value="<?php echo $res2['id'] ?>">
      </form>
      <form class="" action="comment.php" method="post" id ="commentForm">
 
-       Raiting: <input type="number" name="rating" value="5">
+       Rating: <input type="number" name="rating" value="5">
        <input type="hidden" name="prodid" value="<?php echo $prodid;?>">
        <br>
      </form>
