@@ -64,6 +64,7 @@
 <body>
 <!--HEADER STARTS HERE-->
 <div class="header">
+  <a href="/../index.php">Home</a>
   <div class="logBox">
   <?php
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){

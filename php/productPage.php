@@ -50,13 +50,17 @@
    <body>
      <!--HEADER STARTS HERE-->
      <div class="header">
+       <a href="/../index.php">Home</a>
        <div class="logBox">
        <?php
        if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-         echo "Welcome <a href='php/profile.php'>" . $_SESSION["username"] . "</a>";
+         echo "Welcome <a href='profile.php'>" . $_SESSION["username"] . "</a>";
          echo '<style type="text/css">
                  .login {
                    display:none;
+                 }
+                 .admin {
+                   display: none;
                  }
                </style>';
          if($_SESSION["admin"] == 1){
@@ -79,24 +83,35 @@
                  .adminInfo{
                    display:none;
                  }
+                 .admin {
+                   display: none;
+                 }
                </style>';
        }
        ?>
-        <a class="login" href="php/login.php">Login</a>
-        <a class="login" href="php/register.php">Sign up</a>
-        <a class="logout" href="php/cart.php">Cart</a>
-        <a class="logout" href="php/logout.php">Sign out</a>
-        <a class="admin" href="php/admin.php">Admin</a>
+        <a class="login" href="login.php">Login</a>
+        <a class="login" href="register.php">Sign up</a>
+        <a class="logout" href="cart.php">Cart</a>
+        <a class="logout" href="logout.php">Sign out</a>
+        <a class="admin" href="admin.php">Admin</a>
       </div>
      </div>
 
      <!--HEADER ENDS HERE-->
+     <div class="content">
+
+
      <div class="normieInfo">
        <p>Productname: <?php echo $res2['name']?></p>
        <p>Description: <br> <?php echo $res2['description']?></p>
        <p>Price: <?php echo $res1['price']?></p>
        <p>In stock: <?php echo $res1['stock']?></p>
        <p>Color: <?php echo $res1['color']?></p>
+       <form action="updateCart.php" method="post">
+         <input type="number" name="quantity" value="1" min="1" max="<?php echo $res1['stock']?>">
+         <input type="hidden" name="prodid" value="<?php echo $prodid;?>">
+         <input type="submit" value="Add to cart">
+       </form>
        <img src="<?php echo $res1['url']?>">
      </div>
      <form class="adminInfo" action="updateproduct.php" method="post">
@@ -123,7 +138,7 @@
      </form>
      <form class="" action="comment.php" method="post" id ="commentForm">
 
-       Rating: <input type="number" name="rating" value="5">
+       Rating: <input type="number" name="rating" value="5" min="1" max="10">
        <input type="hidden" name="prodid" value="<?php echo $prodid;?>">
        <br>
      </form>
@@ -154,5 +169,6 @@
        <?php
      }
       ?>
+      </div>
    </body>
  </html>

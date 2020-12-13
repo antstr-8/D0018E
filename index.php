@@ -3,7 +3,7 @@
   session_start();
 
   require_once "php/config.php";
-
+  $tempQuantity = 0;
   if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
       if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -18,9 +18,15 @@
 
           if($stmt2->execute()){
               if($stmt2->rowCount() >= 1){
+
+
+
                 $res = $stmt2->fetch();
                 $quantity = $res['quantity'] + $quantity;
+                if($res['quantity'] > 0){
+                  $tempQuantity = 1;
 
+                }
                 $sql = "UPDATE cart SET quantity = :quantity
                 WHERE prodid = :prodid and custid = :custid";
               }
@@ -30,16 +36,16 @@
               }
             }
           }
+            if($stmt = $pdo->prepare($sql)){
+              $stmt->bindParam(":custid", $_SESSION['id'], PDO::PARAM_STR);
+              $stmt->bindParam(":prodid", $prodid , PDO::PARAM_STR);
+              $stmt->bindParam(":quantity", $quantity , PDO::PARAM_STR);
 
-        if($stmt = $pdo->prepare($sql)){
-          $stmt->bindParam(":custid", $_SESSION['id'], PDO::PARAM_STR);
-          $stmt->bindParam(":prodid", $prodid , PDO::PARAM_STR);
-          $stmt->bindParam(":quantity", $quantity , PDO::PARAM_STR);
+              if($stmt->execute()){
 
-          if($stmt->execute()){
+              }
 
           }
-        }
       }
   }
 
@@ -124,21 +130,22 @@
                 <?php echo $row2['color'];?>
                 </div>
                 </div>
-                  <input type="number" name="quantity" value="1">
+                  <input type="number" name="quantity" value="1" min="1" max="<?php echo $row2['stock'];?>">
                   <input type="hidden" name="prodid" value="<?php echo $row['id'];?>">
                   <input type="submit" value="Add to cart">
-                  <input type="submit" value="Product">
                 </form>
               <?php
             }
             }
            ?>
        </div>
-       <br>
+
   <!--<p>
      <a href="php/prodcat.php">Product catalog</a>
   </p>-->
   <a href="php/profile.php">Profile</a>
+  <p><?php $tempQuantity; ?></p>
+
 </div>
 </body>
 </html>

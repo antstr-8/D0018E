@@ -64,7 +64,53 @@
      <link rel="stylesheet" href="/css/style.css">
    </head>
    <body>
-     <a href="/../index.php">Home</a>
+     <div class="header">
+       <a href="/../index.php">Home</a>
+       <div class="logBox">
+       <?php
+       if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+         echo "Welcome <a href='profile.php'>" . $_SESSION["username"] . "</a>";
+         echo '<style type="text/css">
+                 .login {
+                   display:none;
+                 }
+                 .admin {
+                   display: none;
+                 }
+               </style>';
+         if($_SESSION["admin"] == 1){
+           echo '<style type="text/css">
+                   .admin {
+                     display: inline;
+                   }
+                   .normieInfo{
+                     display:none;
+                   }
+                 </style>';
+         }
+       }
+
+       else{
+         echo '<style type="text/css">
+                 .logout {
+                   display:none;
+                 }
+                 .adminInfo{
+                   display:none;
+                 }
+                 .admin {
+                   display: none;
+                 }
+               </style>';
+       }
+       ?>
+        <a class="login" href="login.php">Login</a>
+        <a class="login" href="register.php">Sign up</a>
+        <a class="logout" href="cart.php">Cart</a>
+        <a class="logout" href="logout.php">Sign out</a>
+        <a class="admin" href="admin.php">Admin</a>
+      </div>
+     </div>
      <div class="content">
      <h2>Update profile information</h2>
      <form action="./updateProfile.php" method="post">
