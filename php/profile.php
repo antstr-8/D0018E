@@ -153,12 +153,12 @@
 
                   <?php
                   foreach ($resOrderInfo as $row2){
-                    $stmtProdinfo->bindParam(':prodid', $row2['prodid'], PDO::PARAM_STR);
+                    /*$stmtProdinfo->bindParam(':prodid', $row2['prodid'], PDO::PARAM_STR);
                     $stmtProdinfo->execute();
 
-                    $resProdinfo = $stmtProdinfo->fetch();
+                    $resProdinfo = $stmtProdinfo->fetch();*/
 
-                    $stmtProdcat->bindParam(':prodcatID', $resProdinfo['prodid'],
+                    $stmtProdcat->bindParam(':prodcatID', $row2['prodid'],
                      PDO::PARAM_STR);
                     $stmtProdcat->execute();
                     $resProdcat = $stmtProdcat->fetch();
@@ -166,13 +166,17 @@
                     ?>
                     <div class="orderItem">
                       <p><b>Item name: <?php echo $resProdcat['name'];?></b>
-                          Color: <?php echo $resProdinfo['color'];?>
+                          <br>
+                          Color: <?php echo $row2['oldcolor'];?>
+                          <br>
                           <a href="productPage?id=<?php echo $row2['prodid'];?>">
                             Link</a></p>
-                      <p>Item cost: <?php echo $resProdinfo['price'];?>
-                        Number orded: <?php echo $row2['quantity']; ?>
-                        Total per product:
-                        <?php echo $resProdinfo['price']*$row2['quantity'];?>
+                      <p>Item cost: <?php echo $row2['oldprice'];?>
+                        <br>
+                        Number of items orderd: <?php echo $row2['quantity']; ?>
+                        <br>
+                        Total cost for item:
+                        <?php echo $row2['oldprice']*$row2['quantity'];?>
                       </p>
                     </div>
                     <?php

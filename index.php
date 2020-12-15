@@ -102,7 +102,7 @@
             $stmt->execute();
             $result = $stmt->fetchAll();
             foreach($result as $row){
-              $stht = $pdo->prepare("SELECT color,stock,url,price FROM prodinfo WHERE id=$row[id]");
+              $stht = $pdo->prepare("SELECT color,stock,url,price FROM prodinfo WHERE prodid=$row[id]");
               $stht->execute();
               $res = $stht->fetchAll();
               foreach($res as $row2){ ?>
