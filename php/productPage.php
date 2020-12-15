@@ -110,7 +110,8 @@
        </form>
        <img src="<?php echo $res1['url']?>">
      </div>
-     <form class="adminInfo" action="updateproduct.php" method="post">
+
+     <form class="adminInfo" action="updateproduct.php" enctype="multipart/form-data" method="post">
        <label>Productname:</label>
        <input type="text" name="productName" value="<?php echo $res2['name']?>">
        <br>
@@ -126,14 +127,17 @@
        <label>Color:</label>
        <input type="text" name="productColor" value="<?php echo $res1['color']?>">
        <br>
+       <label>New picture:</label>
+       <input type="file" name="file">
+       <br>
        <input type="submit">
        <br>
        <img src="<?php echo $res1['url']?>">
        <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
        <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
      </form>
-     <form class="" action="comment.php" method="post" id ="commentForm">
 
+     <form class="" action="comment.php" method="post" id ="commentForm">
        Rating: <input type="number" name="rating" value="5" min="1" max="10">
        <input type="hidden" name="prodid" value="<?php echo $prodid;?>">
        <br>

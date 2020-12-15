@@ -3,12 +3,14 @@
   session_start();
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $sqlUpdateProductInfo = "UPDATE prodinfo SET color = :color,
-     stock = :stock, price = :price WHERE id = :id";
+     $sqlUpdateProductInfo = "UPDATE prodinfo SET color = :color,
+     stock = :stock, price = :price, url =:url WHERE id = :id";
 
      $sqlUpdateProductCat = "UPDATE prodcat SET name = :name,
       description = :description WHERE id = :prodcatid";
 
+     $filepath = "./../Pictures/" . $_FILES["file"]["name"];
+     $extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
      $stmtUpdateProdinfo = $pdo->prepare($sqlUpdateProductInfo);
 
@@ -24,9 +26,12 @@
 
      if($productPrice >= 0 && $productStock >= 0){
 
+       move_uploaded_file($_FILES["file"]["tmp_name"], $filepath);
+
        $stmtUpdateProdinfo->bindParam(":color", $productColor, PDO::PARAM_STR);
        $stmtUpdateProdinfo->bindParam(":stock", $productStock, PDO::PARAM_STR);
        $stmtUpdateProdinfo->bindParam(":price", $productPrice, PDO::PARAM_STR);
+       $stmtUpdateProdinfo->bindParam(":url", $filepath, PDO::PARAM_STR);
        $stmtUpdateProdinfo->bindParam(":id", $prodid, PDO::PARAM_STR);
 
 
