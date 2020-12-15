@@ -84,24 +84,6 @@
                  </style>';
          }
        }
-
-<<<<<<< Updated upstream
-       else{
-         echo '<style type="text/css">
-                 .logout {
-                   display:none;
-                 }
-                 .adminInfo{
-                   display:none;
-                 }
-                 .admin {
-                   display: none;
-                 }
-               </style>';
-       }
-=======
-
->>>>>>> Stashed changes
        ?>
         <a class="login" href="login.php">Login</a>
         <a class="login" href="register.php">Sign up</a>
