@@ -73,8 +73,19 @@
                    }
                  </style>';
          }
+         else{
+           echo '<style type="text/css">
+                   .logout {
+                     display:none;
+                   }
+                   .adminInfo{
+                     display:none;
+                   }
+                 </style>';
+         }
        }
 
+<<<<<<< Updated upstream
        else{
          echo '<style type="text/css">
                  .logout {
@@ -88,6 +99,9 @@
                  }
                </style>';
        }
+=======
+
+>>>>>>> Stashed changes
        ?>
         <a class="login" href="login.php">Login</a>
         <a class="login" href="register.php">Sign up</a>
@@ -132,7 +146,7 @@
        <br>
        <input type="submit">
        <br>
-       <label><img src="<?php echo $res1['url']?>"></label>
+       <img src="<?php echo $res1['url']?>">
        <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
        <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
      </form>
@@ -142,6 +156,9 @@
        <input type="hidden" name="prodid" value="<?php echo $prodid;?>">
        <br>
      </form>
+     <br>
+     <a href="/../index.php">Home</a>
+     <br>
       <textarea name="comment" rows="4" cols="50" form="commentForm"
       axlength="250">Enter comment here..</textarea>
       <input type="submit" form="commentForm">

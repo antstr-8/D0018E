@@ -39,7 +39,7 @@ if($clear == TRUE){
     $OrderCommit->bindParam(':id', $id, PDO::PARAM_STR);
     $OrderCommit->bindParam(':total', $total, PDO::PARAM_STR);
     $OrderCommit->execute();
-    //Hämta order id
+    /*//Hämta order id
     $GetId = $pdo->prepare("SELECT @@identity AS 'id'");
     $GetId->execute();
 
@@ -62,7 +62,7 @@ if($clear == TRUE){
       $insert->execute();
 
     }
-    $delete->execute();
+    $delete->execute();*/
 
     $pdo->commit();
   }

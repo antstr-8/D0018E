@@ -3,8 +3,10 @@ CREATE TRIGGER orderinsert
 	AFTER INSERT
     ON ORDERS FOR EACH ROW
     BEGIN
-		INSERT INTO ORDERINFO (id, prodid, quantity)
-        SELECT NEW.id, prodid, quantity FROM CART WHERE NEW.custid = CART.custid;
+		INSERT INTO ORDERINFO (id, prodid, quantity, oldprice)
+        SELECT NEW.id, prodid, quantity,
+				(SELECT price FROM PRODINFO WHERE PRODINFO.prodid = CART.prodid)
+				FROM CART WHERE NEW.custid = CART.custid;
 
         UPDATE PRODINFO LEFT JOIN CART ON PRODINFO.id = CART.prodid
         SET PRODINFO.stock = (PRODINFO.stock - CART.quantity)
