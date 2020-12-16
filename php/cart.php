@@ -125,22 +125,23 @@
 
 
                     <div class='product_row'>
-                      <div class='pictures'>
-                        <img src="<?php echo $row2['url'];?>" style='max-width: 100%; max-height: 100%;'>
-                    <!-- echo "testbild"-->
-                       </div>
+
+                        <img class="pictures" src="<?php echo $row2['url'];?>" style='max-width: 100%; max-height: 100%;'>
+
                        <div class='description'>
                          <?php echo $row3['description']; ?>
                        </div>
                        <div class='price'>
                        <div class='artname'>
+                         <a href="php/productPage.php?id=<?php echo $row2['id'];?>">
                         <?php echo $row3['name']; ?>
+                      </a>
                        </div>
-                    <?php echo $row2['price']; ?>
+                    <?php echo "Price: " . $row2['price']; ?>
                     <br>
-                    <?php echo $row['quantity'];?>
+                    <?php echo "Amount in cart: " . $row2['stock'];?>
                     <br>
-                    <?php echo $row2['color'];?>
+                  <?php echo "Color: " . $row2['color'];?>
                     </div>
                     </div>
                       <input type="number" name="quantity" value="1" min="1" max="<?php echo $row['quantity'];?>">
@@ -159,7 +160,6 @@
           header("location: /../index.php");
         }
           ?>
-          <a href="/../index.php">Home</a>
           <form action="checkout.php" method="post">
               <button type="submit" name="button">Checkout</button>
           </form>

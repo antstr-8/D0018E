@@ -69,6 +69,7 @@ if($clear == TRUE){
   catch(Exception $e){
     $pdo->rollback();
   }
+  /*
   //Remove from stock
   $sqlGetProd = "SELECT stock FROM PRODINFO WHERE id=:prodid";
   $GetSql = $pdo->prepare($sqlGetProd);
@@ -88,6 +89,7 @@ if($clear == TRUE){
 
     $sqlUpdate->execute();
   }
+  */
 }
 header("location: profile.php");
 ?>

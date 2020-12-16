@@ -86,6 +86,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
+    <!--HEADER STARTS HERE-->
+    <div class="header">
+      <a href="/../index.php">Home</a>
+      <div class="logBox">
+      <?php
+      if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        echo "Welcome <a href='php/profile.php'>" . $_SESSION["username"] . "</a>";
+        echo '<style type="text/css">
+                .login {
+                  display:none;
+                }
+              </style>';
+        if($_SESSION["admin"] == 1){
+          echo '<style type="text/css">
+                  .admin {
+                    display: inline;
+                  }
+                </style>';
+        }
+      }
+
+      else{
+        echo '<style type="text/css">
+                .logout {
+                  display:none;
+                }
+              </style>';
+      }
+      ?>
+       <a class="login" href="login.php">Login</a>
+       <a class="login" href="register.php">Sign up</a>
+       <a class="logout" href="cart.php">Cart</a>
+       <a class="logout" href="logout.php">Sign out</a>
+       <a class="admin" href="admin.php">Admin</a>
+     </div>
+    </div>
+
+    <!--HEADER ENDS HERE-->
     <div class="content">
       <h2>Sign Up</h2>
       <p>Please fill this form to create an account.</p>

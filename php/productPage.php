@@ -139,7 +139,7 @@
        <br>
        <input type="submit">
        <br>
-       <img src="<?php echo $res1['url']?>">
+       <img src="<?php echo $res1['url']?>" style="max-width:50%; max-height:50%;">
        <input type="hidden" name="orgPic" value="<?php echo $res1['url']?>">
        <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
        <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
@@ -151,10 +151,8 @@
        <br>
      </form>
      <br>
-     <a href="/../index.php">Home</a>
-     <br>
       <textarea name="comment" rows="4" cols="50" form="commentForm"
-      axlength="250">Enter comment here..</textarea>
+      axlength="250" placeholder="Enter comment"></textarea>
       <input type="submit" form="commentForm">
      <?php
 
@@ -167,14 +165,15 @@
          <div class="commentName">
            Username:<?php echo $uname;?>
          </div>
+         <div class="commentRating">
+           Rating:
+           <?php echo $row['rating'];?>
+         </div>
          <div class="commentDiscription">
            Comment: <br>
            <?php echo $row['comment'];?>
          </div>
-         <div class="commentRating">
-           Rating: <br>
-           <?php echo $row['rating'];?>
-         </div>
+         <br>
        </div>
 
        <?php

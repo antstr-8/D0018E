@@ -123,11 +123,12 @@
                        <?php echo $row['name']; ?>
                     </a>
                    </div>
-                <?php echo $row2['price']; ?>
+
+                <?php echo "Price: " . $row2['price']; ?>
                 <br>
-                <?php echo $row2['stock'];?>
+                <?php echo "Stock: " . $row2['stock'];?>
                 <br>
-                <?php echo $row2['color'];?>
+                <?php echo "Color: " . $row2['color'];?>
                 </div>
                 </div>
                   <input type="number" name="quantity" value="1" min="1" max="<?php echo $row2['stock'];?>">
