@@ -95,7 +95,7 @@
 
   <!--HEADER ENDS HERE-->
   <div class="content">
-      <h1>BIG HTML</h1>
+      <h1>HOMEPAGE</h1>
       <div class="products">
           <?php
             $stmt = $pdo->prepare("SELECT id,name,description FROM prodcat");
@@ -140,11 +140,6 @@
             }
            ?>
        </div>
-
-  <!--<p>
-     <a href="php/prodcat.php">Product catalog</a>
-  </p>-->
-  <a href="php/profile.php">Profile</a>
   <p><?php $tempQuantity; ?></p>
 
 </div>

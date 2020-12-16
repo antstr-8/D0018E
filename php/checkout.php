@@ -2,7 +2,7 @@
 session_start();
 require_once "config.php";
 $total = 0;
-$clear = TRUE;
+$clear = true;
 $id = $_SESSION['id'];
 
 $sqlCart = "SELECT * FROM CART WHERE custid =:id";
@@ -20,8 +20,8 @@ foreach ($result as $row) {
   $output = $GetSql->fetch();
   $price = $output['price'];
   $total = $total + $price*$row['quantity']; // Gångra med antal produkter
-  if(($output['stock'] - $row['quantity']) < 0){
-    $clear = FALSE;
+  if(($output['stock'] - $row['quantity']) <= 0){
+    $clear = false;
     $total = 0;
     break;
   }
@@ -29,7 +29,7 @@ foreach ($result as $row) {
 
 
 }
-if($clear == TRUE){
+if($clear == true){
   try{
     $pdo->beginTransaction();
     $sqlOrder = "INSERT INTO ORDERS (custid, cost)
@@ -90,6 +90,7 @@ if($clear == TRUE){
     $sqlUpdate->execute();
   }
   */
+
 }
 header("location: profile.php");
 ?>

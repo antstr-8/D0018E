@@ -139,7 +139,9 @@
                        </div>
                     <?php echo "Price: " . $row2['price']; ?>
                     <br>
-                    <?php echo "Amount in cart: " . $row2['stock'];?>
+                    <?php echo "Amount in cart: " . $row['quantity'];?>
+                    <br>
+                    <?php echo "Amount in stock: " . $row2['stock'];?>
                     <br>
                   <?php echo "Color: " . $row2['color'];?>
                     </div>

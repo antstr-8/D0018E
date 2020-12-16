@@ -137,7 +137,7 @@
        <label>New picture:</label>
        <input type="file" name="file">
        <br>
-       <input type="submit">
+       <input type="submit" value="Update product">
        <br>
        <img src="<?php echo $res1['url']?>" style="max-width:50%; max-height:50%;">
        <input type="hidden" name="orgPic" value="<?php echo $res1['url']?>">
@@ -145,7 +145,14 @@
        <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
      </form>
 
-     <form class="" action="comment.php" method="post" id ="commentForm">
+     <form class="adminInfo" action="deleteproduct.php" method="post">
+       <input type="submit" value="Delete product">
+       <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
+       <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
+     </form>
+
+     <br>
+     <form  action="comment.php" method="post" id ="commentForm">
        Rating: <input type="number" name="rating" value="5" min="1" max="10">
        <input type="hidden" name="prodid" value="<?php echo $prodid;?>">
        <br>
