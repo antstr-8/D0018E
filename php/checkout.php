@@ -20,7 +20,7 @@ foreach ($result as $row) {
   $output = $GetSql->fetch();
   $price = $output['price'];
   $total = $total + $price*$row['quantity']; // Gångra med antal produkter
-  if(($output['stock'] - $row['quantity']) <= 0){
+  if(($output['stock'] - $row['quantity']) < 0){
     $clear = false;
     $total = 0;
     break;
@@ -90,7 +90,9 @@ if($clear == true){
     $sqlUpdate->execute();
   }
   */
-
+  header("location: orderconfirm.php");
 }
-header("location: profile.php");
+else{
+  header("location: cart.php");
+}
 ?>

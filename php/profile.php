@@ -37,7 +37,7 @@
   }
     $phone_err = $sex_err = "";
     //Print out order history
-    $sqlOrders = "SELECT * FROM ORDERS where custid=:id";
+    $sqlOrders = "SELECT * FROM ORDERS where custid=:id ORDER BY id DESC";
     $stmtOrders = $pdo->prepare($sqlOrders);
     $stmtOrders->bindParam(':id', $param_id, PDO::PARAM_STR);
     $stmtOrders->execute();
@@ -147,7 +147,7 @@
                   $resOrderInfo = $stmtOrderInfo->fetchAll();
                   ?>
                     <div class="order">
-                      <label>Order id: <?php echo $row['id'];?></label>
+                      <h2>Order id: <?php echo $row['id'];?></h2>
                       <label>Total cost: <?php echo $row['cost'];?></label>
                       <p>Items ordered</p>
 
