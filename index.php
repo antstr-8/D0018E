@@ -102,7 +102,7 @@
             $stmt->execute();
             $result = $stmt->fetchAll();
             foreach($result as $row){
-              $stht = $pdo->prepare("SELECT color,stock,url,price FROM prodinfo WHERE prodid=$row[id]");
+              $stht = $pdo->prepare("SELECT id,color,stock,url,price FROM prodinfo WHERE prodid=$row[id]");
               $stht->execute();
               $res = $stht->fetchAll();
               foreach($res as $row2){ ?>
@@ -119,7 +119,7 @@
                    </div>
                    <div class='price'>
                    <div class='artname'>
-                     <a href="php/productPage.php?id=<?php echo $row['id'];?>">
+                     <a href="php/productPage.php?id=<?php echo $row2['id'];?>">
                        <?php echo $row['name']; ?>
                     </a>
                    </div>
@@ -131,7 +131,7 @@
                 </div>
                 </div>
                   <input type="number" name="quantity" value="1" min="1" max="<?php echo $row2['stock'];?>">
-                  <input type="hidden" name="prodid" value="<?php echo $row['id'];?>">
+                  <input type="hidden" name="prodid" value="<?php echo $row2['id'];?>">
                   <input type="submit" value="Add to cart">
                 </form>
               <?php

@@ -6,7 +6,7 @@ CREATE TRIGGER orderinsert
     BEGIN
 		INSERT INTO ORDERINFO (id, prodid, quantity, oldprice, oldcolor, oldurl)
         SELECT NEW.id, CART.prodid, quantity, PRODINFO.price, PRODINFO.color, PRODINFO.url
-				FROM CART LEFT OUTER JOIN PRODINFO ON CART.prodid = PRODINFO.prodid
+				FROM CART LEFT OUTER JOIN PRODINFO ON CART.prodid = PRODINFO.id
                 WHERE NEW.custid = CART.custid;
 
         UPDATE PRODINFO LEFT JOIN CART ON PRODINFO.id = CART.prodid

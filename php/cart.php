@@ -113,11 +113,11 @@
               $stmt->execute();
               $result = $stmt->fetchAll();
               foreach($result as $row){
-                $stht = $pdo->prepare("SELECT id,color,stock,url,price FROM prodinfo WHERE id=$row[prodid]");
+                $stht = $pdo->prepare("SELECT id,prodid,color,stock,url,price FROM prodinfo WHERE id=$row[prodid]");
                 $stht->execute();
                 $res = $stht->fetchAll();
                 foreach($res as $row2){
-                  $newstmt = $pdo->prepare("SELECT name,description FROM prodcat WHERE id=$row2[id]");
+                  $newstmt = $pdo->prepare("SELECT name,description FROM prodcat WHERE id=$row2[prodid]");
                   $newstmt->execute();
                   $newres = $newstmt->fetchAll();
                   foreach($newres as $row3){ ?>

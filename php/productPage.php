@@ -75,14 +75,21 @@
          }
          else{
            echo '<style type="text/css">
-                   .logout {
-                     display:none;
-                   }
                    .adminInfo{
                      display:none;
                    }
                  </style>';
          }
+       }
+       else{
+         echo '<style type="text/css">
+                 .logout {
+                   display:none;
+                 }
+                 .adminInfo{
+                   display:none;
+                 }
+               </style>';
        }
        ?>
         <a class="login" href="login.php">Login</a>
@@ -133,6 +140,7 @@
        <input type="submit">
        <br>
        <img src="<?php echo $res1['url']?>">
+       <input type="hidden" name="orgPic" value="<?php echo $res1['url']?>">
        <input type="hidden" name="prodid" value="<?php echo $prodid ?>">
        <input type="hidden" name="prodCatid" value="<?php echo $res1['prodid'] ?>">
      </form>

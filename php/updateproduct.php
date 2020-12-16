@@ -26,12 +26,17 @@
 
      if($productPrice >= 0 && $productStock >= 0){
 
-       move_uploaded_file($_FILES["file"]["tmp_name"], $filepath);
+       if($_FILES["file"]["name"] != "" && ($extension == 'jpeg' || $extension == 'png' || $extension == 'jpg')){
+        move_uploaded_file($_FILES["file"]["tmp_name"], $filepath);
+        $stmtUpdateProdinfo->bindParam(":url", $filepath, PDO::PARAM_STR);
+       }
+       else{
+         $stmtUpdateProdinfo->bindParam(":url", $_POST['orgPic'], PDO::PARAM_STR);
+       }
 
        $stmtUpdateProdinfo->bindParam(":color", $productColor, PDO::PARAM_STR);
        $stmtUpdateProdinfo->bindParam(":stock", $productStock, PDO::PARAM_STR);
        $stmtUpdateProdinfo->bindParam(":price", $productPrice, PDO::PARAM_STR);
-       $stmtUpdateProdinfo->bindParam(":url", $filepath, PDO::PARAM_STR);
        $stmtUpdateProdinfo->bindParam(":id", $prodid, PDO::PARAM_STR);
 
 
