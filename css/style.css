@@ -1,0 +1,74 @@
+.content{
+  width: 70%;
+  margin: auto;
+}
+.products{
+  /*border-style: solid double;*/
+  /*width: 80%;*/
+  margin-bottom: 20px;
+}
+.product_row{
+  position:relative;
+  /*border-style: solid;*/
+  margin-bottom: 2%;
+  /*background-color: green;*/
+  /*Detta sätter höjden för produktraderna*/
+  height: 105px;
+}
+.pictures{
+  float:left;
+  /*height: 100%;*/
+  /*background-color: white;*/
+}
+.description{
+  padding-left: 1%;
+  float:left;
+  height: 100%;
+  /*background-color: white;*/
+  max-width:45%;
+}
+.price{
+  float:right;
+  width:20%;
+  height: 100%;
+  background-color: white;
+}
+.artname{
+  width:100%;
+  text-align: center;
+}
+
+.verticalRow{
+  padding-bottom: 10px;
+}
+
+/* CSS for header START*/
+.header{
+  width: 70%;
+  background-color: gray;
+  margin: auto;
+  height: 60px;
+}
+
+.logBox{
+  float: right;
+  padding: 20px 0;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: white;
+}
+
+.login p{
+  color: white;
+}
+.admin{
+  display: none;
+}
+/*CSS for header END */
+
+.order{
+  background-color: grey;
+  margin-top: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
