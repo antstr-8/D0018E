@@ -1,4 +1,4 @@
-# D0018E
+# D0018E Website
 Lab for D0018E
 Project for creating the basic functionality of a ecommerce website.
 The project was done under a limited meaning that safety features was discarded to be able to present something under the time limitations.
